@@ -1,10 +1,8 @@
 {% extends "index.html" %}
 
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{object.title}}{% endblock %}
 
 {% block content %}
-
-
 
 <h2>{{ object.title }}</h2>
 <p>{{ object.description }}</p>
@@ -31,7 +29,8 @@
 <br>
 
 
-<p><a href="{% url 'gallery' %}">&laquo; Назад в галлерею</a></p>
+<p><a href="{% url 'gallery' %}">&laquo; Назад в галлерею</a></p><br>
+
 {% endblock %}
 
 ../../{{photo.image.url}}
