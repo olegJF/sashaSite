@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import get_object_or_404, render_to_response, render
 from gallery.models import Album, Photo
+from django.core.paginator import Paginator
 #from django.http import HttpResponse, request
 
 
 # Create your views here.
-def gallery(request):
-    item_list = Album.objects.all()
+def gallery(request, page_number=1):
+    all_albums = Album.objects.all()
+    current_page = Paginator(all_albums, 2)
+    item_list = current_page.page(page_number)
     return render(request, 'gallery/index.tpl', {'item_list':item_list})
 
 def album(request, object_id):

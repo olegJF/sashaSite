@@ -21,8 +21,8 @@ class Album(models.Model):
         return self.name
 
 
-    def get_absolute_url(self):
-        return ('item_detail', None, {'object_id': self.id})
+    #def get_absolute_url(self):
+    #   return ('item_detail', None, {'object_id': self.id})
 
 class Photo (models.Model):
     item = models.ForeignKey(Album)
@@ -39,5 +39,5 @@ class Photo (models.Model):
         return self.title
 
 
-    def get_absolute_url(self):
-        return reverse('album', args=[str(self.id)])
+    #def get_absolute_url(self):
+    #   return reverse('album', args=[str(self.id)])

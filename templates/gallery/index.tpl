@@ -15,11 +15,13 @@ items; use the link at the bottom to see the full listing.</p>
             <h4>{{ item.title }}</h4>
             <div class="dirImgWrapper">
             {% if item.photo_set.count %}
-                <a href="{{ item.id }}/"  title="{{item.description}}">
+                <a href="album/{{ item.id }}/"  title="{{item.description}}">
                 <img class="dirImgCntr" src="/{{ item.photo_set.all.0.image.thumb_url }}"  />
                 </a>
             {% else %}
-                <span>No image</span>
+                <a href="album/{{ item.id }}/"  title="{{item.description}}">
+                <img class="dirImgCntr" src="../../static/photos/no_img.thumb.jpg"  />
+                </a>
             {% endif %}
             </div>
         </div>

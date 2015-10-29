@@ -13,7 +13,7 @@
         <tr>
             {% for photo in object.photo_set.all %}
             <td>
-                <a href="{{ photo.get_absolute_url }}" rel="lightgallery[gallery]" title="{{ photo.title }}">
+                <a href="../../{{photo.image.url}}" rel="lightgallery[gallery]" title="{{ photo.title }}">
                     <img src="/{{ photo.image.thumb_url }}" alt=" " /><br>
                 </a>
             </td>
@@ -21,6 +21,11 @@
             </tr>
             <tr>
             {% endif %}
+
+            {%empty%}
+                <td>
+                    <img src="../../static/photos/no_img.thumb.jpg"  />
+                </td>
             {% endfor %}
         </tr>
     </table>
@@ -30,7 +35,11 @@
 
 
 <p><a href="{% url 'gallery' %}">&laquo; Назад в галлерею</a></p><br>
+<div id="Paginator">
+    <ul class="paginator">
 
+
+    </ul>
+</div>
 {% endblock %}
-
-../../{{photo.image.url}}
+{{ photo.get_absolute_url }}
