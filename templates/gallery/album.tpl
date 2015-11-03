@@ -34,7 +34,7 @@
 <br>
 
 
-<p><a href="{% url 'gallery' %}">&laquo; Назад в галлерею</a></p><br>
+<p><a href="{% url 'gallery' page_number %}">&laquo; Назад в галлерею</a></p><br>
 <div id="Paginator">
     <ul class="paginator">
 

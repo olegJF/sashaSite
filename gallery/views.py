@@ -10,9 +10,9 @@ def gallery(request, page_number=1):
     all_albums = Album.objects.all()
     current_page = Paginator(all_albums, 2)
     item_list = current_page.page(page_number)
-    return render(request, 'gallery/index.tpl', {'item_list':item_list})
+    return render(request, 'gallery/index.tpl', {'item_list':item_list, 'page_number':page_number})
 
-def album(request, object_id):
+def album(request, object_id, page_number=1):
     photos_list = Album.objects.get( pk=object_id)
     count = photos_list.photo_set.count()
 
@@ -36,6 +36,7 @@ def album(request, object_id):
         #       photo_in_last_line.append(i+1)
     context['photos_rows'] = photos_rows
     context['more_one_line'] = more_one_line
+    context['page_number'] = page_number
     #context['photo_last_line'] = photo_last_line
     #context['photo_in_last_line'] = photo_in_last_line
 
