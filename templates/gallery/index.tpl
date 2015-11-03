@@ -30,8 +30,9 @@ items; use the link at the bottom to see the full listing.</p>
 <div style="clear:both"></div>
 <div id="navigation">
     <div class="clearfix">
-        {% if item_list.has_previos %}
-            <a class="prev page-numbers" href="{{ item_list.previos_page_number }}/">&laquo; </a>
+
+        {% if item_list.has_previous %}
+            <a class="prev page-numbers" href="{% url 'gallery' item_list.previous_page_number %}">&laquo; </a>
         {% else %}
             &laquo;
         {% endif %}
@@ -39,11 +40,11 @@ items; use the link at the bottom to see the full listing.</p>
             {% if page == item_list.number %}
                 <span class="page-numbers current">{{page}}</span>
             {% else %}
-                <a class="page-numbers" href="{{ page }}/"><span>{{page}}</span></a>
+                <a class="page-numbers" href="{% url 'gallery' page %}"><span>{{page}}</span></a>
             {% endif %}
         {% endfor %}
         {% if item_list.has_next %}
-            <a class="next page-numbers" href="{{ item_list.next_page_number }}/">&raquo; </a>
+            <a class="next page-numbers" href="{% url 'gallery' item_list.next_page_number %}">&raquo; </a>
         {% else %}
             &raquo;
         {% endif %}

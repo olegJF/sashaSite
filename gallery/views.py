@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import get_object_or_404, render_to_response, render
+from django.shortcuts import get_object_or_404, render_to_response, render, redirect
+from django.core.exceptions import ObjectDoesNotExist
 from gallery.models import Album, Photo
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, InvalidPage
 #from django.http import HttpResponse, request
 
 
@@ -9,13 +10,23 @@ from django.core.paginator import Paginator
 def gallery(request, page_number=1):
     all_albums = Album.objects.all()
     current_page = Paginator(all_albums, 2)
-    item_list = current_page.page(page_number)
+    try:
+        item_list = current_page.page(page_number)
+    except InvalidPage:
+        return redirect('/gallery/1/', page_number = 1)
+
     return render(request, 'gallery/index.tpl', {'item_list':item_list, 'page_number':page_number})
 
 def album(request, object_id, page_number=1):
-    photos_list = Album.objects.get( pk=object_id)
-    count = photos_list.photo_set.count()
+    try:
+        photos_list = Album.objects.get( pk=object_id)
 
+    except IndentationError:
+        photos_list = Album.objects.get( pk=1)
+    except ObjectDoesNotExist:
+        photos_list = Album.objects.get( pk=1)
+
+    count = photos_list.photo_set.count()
     context = dict()
     context['object'] = photos_list
     photos_rows = []
