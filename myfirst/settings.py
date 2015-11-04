@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',     # добавить для flatpage
+    'django.contrib.flatpages', # добавить для flatpage
     'core',
     'gallery',
     
@@ -52,6 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware', # добавить для flatpage
 )
 
 ROOT_URLCONF = 'myfirst.urls'
@@ -104,6 +107,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+SITE_ID = 1 # добавить для flatpage
 
 STATIC_URL = '/static/'
 

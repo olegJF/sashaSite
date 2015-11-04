@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^hello/$', hello),
     url(r'^core/', include('core.urls', namespace="core")),
     url(r'^gallery/', include('gallery.urls')),
+    #url(r'^about/', include('django.contrib.flatpages.urls')),
     url(r'^$', index),
 ]
